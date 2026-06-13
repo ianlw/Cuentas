@@ -17,8 +17,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
 
-        // Gemini API Key - Se inyectará por variables de entorno (GitHub Secrets) o local
-        val apiKey = System.getenv("GEMINI_API_KEY") ?: "API_KEY_FALTANTE"
+        // Gemini API Key - Se inyectará por Gradle properties o variables de entorno
+        val apiKey = project.findProperty("geminiApiKey") as? String ?: System.getenv("GEMINI_API_KEY") ?: "API_KEY_FALTANTE"
         buildConfigField("String", "GEMINI_API_KEY", "\"$apiKey\"")
     }
 
